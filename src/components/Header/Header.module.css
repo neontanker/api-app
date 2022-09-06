@@ -1,11 +1,18 @@
 .header {
-  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
   margin: auto;
+  flex-wrap: wrap;
   text-align: center;
+  align-items: center;
 }
-.header a {
+.header h1 {
   font-size: 35px;
   font-family: "Lato Light";
+  flex-basis: 100%;
+}
+.header a {
   text-decoration: none;
   color: white;
 }

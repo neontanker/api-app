@@ -7,8 +7,8 @@ const ApiObject = (props) => {
   return (
     <Card className={classes.card}>
       <ApiDetails details={props.details} />
-      <p>hello</p>
-      <ApiImageList images={props.images} />
+
+      <ApiImageList images={props.details.images} />
     </Card>
   );
 };

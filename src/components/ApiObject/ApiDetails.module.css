@@ -1,7 +1,12 @@
 .card {
-  width: 50%;
+  width: 100%;
   padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
   background-color: white;
+  text-align: left;
+  margin-left: 10px;
+  white-space: pre-wrap;
 }
 .card p {
   margin: 5px;

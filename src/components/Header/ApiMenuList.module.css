@@ -1,0 +1,5 @@
+.list {
+  padding: 5px !important;
+  color: red !important;
+  flex-basis: 100%;
+}

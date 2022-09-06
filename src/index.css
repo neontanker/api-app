@@ -1,17 +1,5 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 * {
+  font-family: "Lato";
   margin: 0;
   padding: 0;
   border: 0;
@@ -19,6 +7,7 @@ code {
   font-size: 100%;
   vertical-align: baseline;
 }
+/* I didn't create it, but it's cool! */
 html {
   background-size: 2em 2em;
   background-position: 0em 1em, 1em 0, 0em 1em, 1em 0, 0 0, 0 0, 0 0, 0 0, 0 0;

@@ -5,13 +5,25 @@ import classes from "./ApiDetails.module.css";
 const ApiDetails = (props) => {
   const elephantMath = `(approximately ${Math.round(
     props.details.mass / 6
-  )} elephants).`;
+  )} elephants)`;
+
   return (
     <Card className={classes.card}>
-      <p>Name: {props.details.name}</p>
       <p>
-        Mass: {props.details.mass} tons {elephantMath}
+        <strong>Name:</strong> {props.details.name}
       </p>
+      {props.details.mass ? (
+        <p>
+          <strong>Mass:</strong> {props.details.mass} tons {elephantMath}
+        </p>
+      ) : (
+        ""
+      )}
+      {props.details.height && (
+        <p>
+          <strong>Height:</strong> {props.details.height} feet
+        </p>
+      )}
     </Card>
   );
 };

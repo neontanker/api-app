@@ -1,6 +1,15 @@
+import ApiMenuList from "./ApiMenuList";
+import ApiNavigation from "./ApiNavigation";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
+  const changeApiObjectHandler = (object) => {
+    props.changeApiObject(object);
+  };
+  const changeCurrentIndexHandler = (index) => {
+    props.changeCurrentIndex(index);
+  };
+  // Todo: loading... for ApiMenuList
   return (
     <header className={classes.header}>
       <h1>
@@ -12,6 +21,11 @@ const Header = (props) => {
           SpaceX API
         </a>
       </h1>
+      <ApiNavigation changeApiObject={changeApiObjectHandler} />
+      <ApiMenuList
+        changeCurrentIndex={changeCurrentIndexHandler}
+        apiObjectData={props.apiObjectData}
+      />
     </header>
   );
 };
