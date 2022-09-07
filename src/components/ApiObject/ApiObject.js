@@ -4,11 +4,12 @@ import ApiDetails from "./ApiDetails";
 import classes from "./ApiObject.module.css";
 
 const ApiObject = (props) => {
+  const { images, ...details } = props.details;
   return (
     <Card className={classes.card}>
-      <ApiDetails details={props.details} />
+      <ApiDetails details={details} />
 
-      <ApiImageList images={props.details.images} />
+      <ApiImageList images={images} />
     </Card>
   );
 };

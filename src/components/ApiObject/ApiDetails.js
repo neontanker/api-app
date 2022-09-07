@@ -1,31 +1,22 @@
 import Card from "../UI/Card";
 
 import classes from "./ApiDetails.module.css";
+import ApiDetailsItem from "./ApiDetailsItem";
 
 const ApiDetails = (props) => {
-  const elephantMath = `(approximately ${Math.round(
-    props.details.mass / 6
-  )} elephants)`;
+  // atm may aswell just be props.details instead..
+  const { ...rest } = props.details;
+  const elephantMath = `(approximately ${Math.round(rest.mass / 6)} elephants)`;
 
-  return (
-    <Card className={classes.card}>
-      <p>
-        <strong>Name:</strong> {props.details.name}
-      </p>
-      {props.details.mass ? (
-        <p>
-          <strong>Mass:</strong> {props.details.mass} tons {elephantMath}
-        </p>
-      ) : (
-        ""
-      )}
-      {props.details.height && (
-        <p>
-          <strong>Height:</strong> {props.details.height} feet
-        </p>
-      )}
-    </Card>
-  );
+  const content = Object.keys(rest).map((keyName, i) => (
+    <ApiDetailsItem
+      key={i}
+      name={keyName}
+      content={rest[keyName]}
+      elephant={elephantMath}
+    />
+  ));
+  return <Card className={classes.card}>{content}</Card>;
 };
 
 export default ApiDetails;

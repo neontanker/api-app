@@ -5,10 +5,9 @@
   padding-right: 50px;
   background-color: white;
   text-align: left;
-  margin-left: 10px;
-  white-space: pre-wrap;
-}
-.card p {
   margin: 5px;
-  color: black;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  overflow: auto;
 }
