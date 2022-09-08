@@ -14,7 +14,6 @@ const Header = (props) => {
     props.changeCurrentIndex(index);
     setActiveIndex(index);
   };
-  // Todo: loading... for ApiMenuList
   return (
     <header className={classes.header}>
       <h1>

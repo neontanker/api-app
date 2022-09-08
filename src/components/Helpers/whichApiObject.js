@@ -1,4 +1,10 @@
 const whichApiObject = (apiName, index, data) => {
+  // Todo: add more data & more API endpoints
+  /* To add new data to display: find out the data structure of the API endpoint either by using the example on github: (Rockets docs) https://github.com/r-spacex/SpaceX-API/blob/master/docs/rockets/v4/all.md
+  or sending a postman request (or just console.log the request data) then ammend the "details" object below associated with the chosen api endpoint.
+  If the data needs any extras with it (like "feet" or "metres") you can add a if statement in ApiObject/ApiDetailsItem.js*/
+
+  // To add a new API endpoint you will need to add a new button to Header/ApiNavigation.js with a value of the api endpoint, then create a new if statement and details object here.
   let details = {};
   if (apiName === "rockets") {
     details = {
