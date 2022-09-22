@@ -1,4 +1,4 @@
-const whichApiObject = (apiName, index, data) => {
+const getApiDataStructure = (apiName, index, data) => {
   // Todo: add more data & more API endpoints
   /* To add new data to display: find out the data structure of the API endpoint either by using the example on github: (Rockets docs) https://github.com/r-spacex/SpaceX-API/blob/master/docs/rockets/v4/all.md
   or sending a postman request (or just console.log the request data) then ammend the "details" object below associated with the chosen api endpoint.
@@ -21,6 +21,7 @@ const whichApiObject = (apiName, index, data) => {
       images: data[index].flickr_images,
       mass: data[index].launch_payload_mass.kg / 1000,
       height: data[index].height_w_trunk.feet,
+      description: data[index].description,
     };
   }
   if (apiName === "ships") {
@@ -37,4 +38,4 @@ const whichApiObject = (apiName, index, data) => {
 
   return details;
 };
-export default whichApiObject;
+export default getApiDataStructure;

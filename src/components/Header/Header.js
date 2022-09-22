@@ -14,6 +14,7 @@ const Header = (props) => {
     props.changeCurrentIndex(index);
     setActiveIndex(index);
   };
+  console.log("PROBLEM", props.apiObjectData);
   return (
     <header className={classes.header}>
       <h1>
