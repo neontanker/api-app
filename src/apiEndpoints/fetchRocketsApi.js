@@ -12,11 +12,8 @@ const fetchRocketsApi = async () => {
         description: 1,
       },
     },
-    // if same as last time: return old data for "caching?" instead of having seperate function to avoid sending multiple requests? (might take up alot of memory if seperate fetch functions)
   };
-  //   setIsLoading(true);
-  //   setError(null);
-  console.log("fetching...Rockets");
+
   try {
     const response = await fetch(
       `https://api.spacexdata.com/v4/rockets/query`,
@@ -34,23 +31,12 @@ const fetchRocketsApi = async () => {
 
     const data = await response.json();
     const rawData = data.docs;
-    console.log("Rocket data", data.docs);
-    const rocketDetails = getApiDataStructure("rockets", 0, rawData);
-    return { rawData, rocketDetails };
+    const details = getApiDataStructure("rockets", 0, rawData);
+    return { rawData, details };
   } catch (error) {
     console.log(error.message);
+    return { error };
   }
-  //   setIsLoading(false);
 };
 
 export default fetchRocketsApi;
-
-//   if (currentApiName === "rockets") {
-//     details = {
-//       name: data[index].name,
-//       images: data[index].flickr_images,
-//       mass: data[index].mass.kg / 1000,
-//       height: data[index].height.feet,
-//       description: data[index].description,
-//     };
-//   }

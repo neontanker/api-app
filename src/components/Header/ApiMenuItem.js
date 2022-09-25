@@ -9,7 +9,6 @@ const ApiMenuItem = (props) => {
   };
 
   if (props.activeIndex === props.value) {
-    console.log("classNames");
     cssClasses = `${classes.button} ${classes.active}`;
   }
 

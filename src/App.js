@@ -4,9 +4,7 @@ import classes from "./App.module.css";
 import Header from "./components/Header/Header";
 import ApiObject from "./components/ApiObject/ApiObject";
 import getApiDataStructure from "./helpers/getApiDataStructure";
-import fetchDragonsApi from "./apiEndpoints/fetchDragonsApi";
-import fetchRocketsApi from "./apiEndpoints/fetchRocketsApi";
-import fetchShipsApi from "./apiEndpoints/fetchShipsApi";
+import fetchApiAt from "./helpers/fetchApiAt";
 
 // https://api.spacexdata.com/v4/dragons/5e9d058759b1ff74a7ad5f8f
 
@@ -21,12 +19,14 @@ function App() {
   const [currentApiDetails, setCurrentApiDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [currentApiObjectName, setCurrentApiObjectName] = useState("rockets");
+  const [currentApiName, setCurrentApiName] = useState("rockets");
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const changeApiObject = (objectName) => {
-    if (objectName !== currentApiObjectName && objectName !== "") {
-      setCurrentApiObjectName(objectName);
+    console.log(objectName, "vs", currentApiName);
+    console.log(objectName !== currentApiName && objectName !== "");
+    if (objectName !== currentApiName && objectName !== "") {
+      setCurrentApiName(objectName);
       fetchApiHandler(objectName);
     }
   };
@@ -34,43 +34,30 @@ function App() {
     if (index !== currentIndex && !isNaN(index)) {
       setCurrentIndex(index);
       console.log("changing index..");
-      const details = getApiDataStructure(
-        currentApiObjectName,
-        index,
-        apiRawData
-      );
+      const details = getApiDataStructure(currentApiName, index, apiRawData);
       setCurrentApiDetails(details);
     }
   };
 
   const fetchApiHandler = useCallback(
-    async (apiPath = currentApiObjectName) => {
+    async (apiPath = currentApiName) => {
       setIsLoading(true);
       setError(null);
       console.log("fetching...");
 
-      //todo: handle error state?
-      if (apiPath === "rockets") {
-        const rocketsData = await fetchRocketsApi();
-        setCurrentApiDetails(rocketsData.rocketDetails);
-        setApiRawData(rocketsData.rawData);
+      const fetchedData = await fetchApiAt(apiPath);
+      if (fetchedData.error) {
+        setError(fetchedData.error.message);
+        return;
       }
-      if (apiPath === "dragons") {
-        const dragonsData = await fetchDragonsApi();
-        setCurrentApiDetails(dragonsData.dragonDetails);
-        setApiRawData(dragonsData.rawData);
-      }
-      if (apiPath === "ships") {
-        const shipsData = await fetchShipsApi();
-        setCurrentApiDetails(shipsData.shipDetails);
-        setApiRawData(shipsData.rawData);
-      }
+      setCurrentApiDetails(fetchedData.details);
+      setApiRawData(fetchedData.rawData);
 
       setCurrentIndex(0);
 
       setIsLoading(false);
     },
-    [currentApiObjectName]
+    [currentApiName]
   );
 
   useEffect(() => {
@@ -95,6 +82,8 @@ function App() {
           changeApiObject={changeApiObject}
           changeCurrentIndex={changeCurrentIndex}
           apiObjectData={apiRawData}
+          activeIndex={currentIndex}
+          error={error}
         />
         <main>{content}</main>
       </div>

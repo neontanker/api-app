@@ -1,20 +1,14 @@
-import { useState } from "react";
-
 import ApiMenuList from "./ApiMenuList";
 import ApiNavigation from "./ApiNavigation";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const changeApiObjectHandler = (object) => {
     props.changeApiObject(object);
-    setActiveIndex(0);
   };
   const changeCurrentIndexHandler = (index) => {
     props.changeCurrentIndex(index);
-    setActiveIndex(index);
   };
-  console.log("PROBLEM", props.apiObjectData);
   return (
     <header className={classes.header}>
       <h1>
@@ -27,11 +21,13 @@ const Header = (props) => {
         </a>
       </h1>
       <ApiNavigation changeApiObject={changeApiObjectHandler} />
-      <ApiMenuList
-        activeIndex={activeIndex}
-        changeCurrentIndex={changeCurrentIndexHandler}
-        apiObjectData={props.apiObjectData}
-      />
+      {!props.error && (
+        <ApiMenuList
+          activeIndex={props.activeIndex}
+          changeCurrentIndex={changeCurrentIndexHandler}
+          apiObjectData={props.apiObjectData}
+        />
+      )}
     </header>
   );
 };
