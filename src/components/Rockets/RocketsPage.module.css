@@ -1,0 +1,11 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 90%;
+  grid-gap: 10px;
+  padding: 10px;
+  background-color: rgba(36, 36, 36, 0.8);
+  color: white;
+}

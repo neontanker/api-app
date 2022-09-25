@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import ApiObject from "./components/ApiObject/ApiObject";
 import getApiDataStructure from "./helpers/getApiDataStructure";
 import fetchApiAt from "./helpers/fetchApiAt";
+import { RocketsPage } from "./components/Rockets/RocketsPage";
 
 // https://api.spacexdata.com/v4/dragons/5e9d058759b1ff74a7ad5f8f
 
@@ -85,7 +86,8 @@ function App() {
           activeIndex={currentIndex}
           error={error}
         />
-        <main>{content}</main>
+        {/* <main>{content}</main> */}
+        <RocketsPage />
       </div>
     </>
   );
