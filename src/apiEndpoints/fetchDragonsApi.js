@@ -16,7 +16,7 @@ const fetchDragonsApi = async () => {
 
   try {
     const response = await fetch(
-      `https://api.spacexdata.com/v4/dragons/queryt`,
+      `https://api.spacexdata.com/v4/dragons/query`,
       {
         method: "POST",
         body: JSON.stringify(queryOptions),
