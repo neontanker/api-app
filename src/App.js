@@ -11,8 +11,6 @@ import fetchApiAt from "./helpers/fetchApiAt";
 // https://api.spacexdata.com/v4/rockets/5e9d0d96eda699382d09d1ee
 function App() {
   // could use React Redux here to avoid prop chaining and store app-wide states, this is likely only a small app so not entirely necessary here
-  /* saving raw data here and transformed data in currentApiDetails in order to continue to use raw data as otherwise we'd have to loop through raw data array to transform it.
-  Is there a better way? Storing in fetch function would cause alot of memory without a cleanup*/
   // this one goes to "Header - ApiMenu" and is used with the "currentIndex" to change "currentApiDetails"
   const [apiRawData, setApiRawData] = useState([]);
   // this one goes to "ApiObject" to display all details
@@ -23,8 +21,6 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const changeApiObject = (objectName) => {
-    console.log(objectName, "vs", currentApiName);
-    console.log(objectName !== currentApiName && objectName !== "");
     if (objectName !== currentApiName && objectName !== "") {
       setCurrentApiName(objectName);
       fetchApiHandler(objectName);
