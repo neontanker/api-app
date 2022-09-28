@@ -9,6 +9,7 @@
 }
 /* I didn't create it, but it's cool! */
 html {
+  overflow-y: scroll;
   background-size: 2em 2em;
   background-position: 0em 1em, 1em 0, 0em 1em, 1em 0, 0 0, 0 0, 0 0, 0 0, 0 0;
   background-image: linear-gradient(

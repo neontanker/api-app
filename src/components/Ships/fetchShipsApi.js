@@ -1,10 +1,10 @@
-import getApiDataStructure from "../helpers/getApiDataStructure";
+const BASE_SHIPS_URL = `https://api.spacexdata.com/v4/ships/query`;
 
 const fetchShipsApi = async () => {
-  //todo: set up pagination with "load more" button
   const queryOptions = {
     query: {},
     options: {
+      pagination: false,
       select: {
         name: 1,
         image: 1,
@@ -14,12 +14,11 @@ const fetchShipsApi = async () => {
         link: 1,
         roles: 1,
       },
-      limit: 50,
     },
   };
 
   try {
-    const response = await fetch(`https://api.spacexdata.com/v4/ships/query`, {
+    const response = await fetch(BASE_SHIPS_URL, {
       method: "POST",
       body: JSON.stringify(queryOptions),
       headers: {
@@ -31,9 +30,7 @@ const fetchShipsApi = async () => {
     }
 
     const data = await response.json();
-    const rawData = data.docs;
-    const details = getApiDataStructure("ships", 0, rawData);
-    return { rawData, details };
+    return data.docs;
   } catch (error) {
     console.log(error.message);
     return { error };

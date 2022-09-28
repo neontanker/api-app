@@ -1,4 +1,5 @@
-import getApiDataStructure from "../helpers/getApiDataStructure";
+const BASE_DRAGONS_URL = `https://api.spacexdata.com/v4/Dragons/query`;
+// https://api.spacexdata.com/v4/dragons/5e9d058759b1ff74a7ad5f8f
 
 const fetchDragonsApi = async () => {
   const queryOptions = {
@@ -15,24 +16,19 @@ const fetchDragonsApi = async () => {
   };
 
   try {
-    const response = await fetch(
-      `https://api.spacexdata.com/v4/dragons/query`,
-      {
-        method: "POST",
-        body: JSON.stringify(queryOptions),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(BASE_DRAGONS_URL, {
+      method: "POST",
+      body: JSON.stringify(queryOptions),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!response.ok) {
       throw new Error("Something went wrong!");
     }
 
     const data = await response.json();
-    const rawData = data.docs;
-    const details = getApiDataStructure("dragons", 0, rawData);
-    return { rawData, details };
+    return data.docs;
   } catch (error) {
     console.log(error.message);
     return { error };

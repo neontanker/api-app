@@ -1,11 +1,16 @@
 import React from "react";
-
 import Card from "../UI/Card";
 import ApiImageList from "../Shared/ApiImageList";
 import "../UI/apiDetailsCard.css";
 
-const Rocket = ({ description, flickr_images, height, mass, name }) => {
-  const tons = mass.kg / 1000;
+const Dragon = ({
+  description,
+  flickr_images,
+  height_w_trunk,
+  launch_payload_mass,
+  name,
+}) => {
+  const tons = launch_payload_mass.kg / 1000;
 
   const elephantMath = `(approximately ${Math.round(tons / 6)} elephants)`;
 
@@ -16,15 +21,15 @@ const Rocket = ({ description, flickr_images, height, mass, name }) => {
           <strong>Name:</strong> {name}
         </p>
 
-        {mass && (
+        {launch_payload_mass && (
           <p>
             <strong>Mass:</strong> {`${tons} tons ${elephantMath}`}
           </p>
         )}
 
-        {height.feet && (
+        {height_w_trunk && (
           <p>
-            <strong>Height:</strong> {height.feet} feet
+            <strong>Height with trunk:</strong> {height_w_trunk.feet} feet
           </p>
         )}
         {description && (
@@ -39,4 +44,4 @@ const Rocket = ({ description, flickr_images, height, mass, name }) => {
   );
 };
 
-export default Rocket;
+export default Dragon;

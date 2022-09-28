@@ -1,13 +1,9 @@
-import ApiMenuList from "./ApiMenuList";
 import ApiNavigation from "./ApiNavigation";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
   const changeApiObjectHandler = (object) => {
     props.changeApiObject(object);
-  };
-  const changeCurrentIndexHandler = (index) => {
-    props.changeCurrentIndex(index);
   };
   return (
     <header className={classes.header}>
@@ -21,13 +17,6 @@ const Header = (props) => {
         </a>
       </h1>
       <ApiNavigation changeApiObject={changeApiObjectHandler} />
-      {!props.error && (
-        <ApiMenuList
-          activeIndex={props.activeIndex}
-          changeCurrentIndex={changeCurrentIndexHandler}
-          apiObjectData={props.apiObjectData}
-        />
-      )}
     </header>
   );
 };

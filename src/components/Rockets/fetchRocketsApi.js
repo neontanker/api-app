@@ -1,3 +1,7 @@
+const BASE_ROCKETS_URL = `https://api.spacexdata.com/v4/rockets/query`;
+
+// https://api.spacexdata.com/v4/rockets/5e9d0d96eda699382d09d1ee
+
 const fetchRocketsApi = async () => {
   const queryOptions = {
     query: {},
@@ -13,16 +17,13 @@ const fetchRocketsApi = async () => {
   };
 
   try {
-    const response = await fetch(
-      `https://api.spacexdata.com/v4/rockets/query`,
-      {
-        method: "POST",
-        body: JSON.stringify(queryOptions),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(BASE_ROCKETS_URL, {
+      method: "POST",
+      body: JSON.stringify(queryOptions),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!response.ok) {
       throw new Error("Something went wrong!");
     }

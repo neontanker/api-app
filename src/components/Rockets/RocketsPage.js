@@ -1,35 +1,38 @@
 import React, { useEffect, useState } from "react";
-import ApiImageList from "../ApiObject/ApiImageList";
 import ApiMenuItem from "../UI/ApiMenuItem";
 import Card from "../UI/Card";
 import fetchRocketsApi from "./fetchRocketsApi";
-import { Rocket } from "./Rocket";
-import classes from "./RocketsPage.module.css";
+import Rocket from "./Rocket";
+import "../UI/apiDetailsWrapperCard.css";
 
 /**
  * Handle rockets API state and renders a list of rockets
  */
-export function RocketsPage() {
+const RocketsPage = () => {
   const [rockets, setRockets] = useState(null);
   const [selectedRocket, setSelectedRocket] = useState(null);
+  const [error, setError] = useState(null);
   // const [selectedRocketIndex, setSelectedRocketIndex] = useState(null);
   // const selectedRocket = rockets && rockets[selectedRocketIndex]
 
   useEffect(() => {
-    async function getRockets() {
+    (async function getRockets() {
       const data = await fetchRocketsApi();
+      console.log("fetching...");
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
       setRockets(data);
       setSelectedRocket(data[0]);
-    }
-    getRockets();
+      setError(null);
+    })();
   }, [setRockets]);
-
-  console.log(rockets);
-
-  if (!rockets) return <div>loading</div>;
+  if (error) return <p>{error.message}</p>;
+  if (!rockets) return <div>Loading...</div>;
 
   return (
-    <Card className={classes.card}>
+    <>
       {rockets.map((rocket) => (
         <ApiMenuItem
           onClick={() => {
@@ -40,8 +43,11 @@ export function RocketsPage() {
           key={rocket.name}
         />
       ))}
-
-      {selectedRocket && <Rocket {...selectedRocket} />}
-    </Card>
+      <Card className="detailsWrapperCard">
+        {selectedRocket && <Rocket {...selectedRocket} />}
+      </Card>
+    </>
   );
-}
+};
+
+export default RocketsPage;
