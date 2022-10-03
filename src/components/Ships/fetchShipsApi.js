@@ -1,10 +1,13 @@
 const BASE_SHIPS_URL = `https://api.spacexdata.com/v4/ships/query`;
 
-const fetchShipsApi = async () => {
+const fetchShipsApi = async (pageNumber = 1) => {
+  // WIP: Pagination
   const queryOptions = {
     query: {},
     options: {
       pagination: false,
+      // limit: 10,
+      // page: pageNumber,
       select: {
         name: 1,
         image: 1,
@@ -28,9 +31,10 @@ const fetchShipsApi = async () => {
     if (!response.ok) {
       throw new Error("Something went wrong!");
     }
-
+    // console.log("fetching ships");
     const data = await response.json();
-    return data.docs;
+    const { docs, totalPages } = data;
+    return { docs, totalPages };
   } catch (error) {
     console.log(error.message);
     return { error };

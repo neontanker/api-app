@@ -1,10 +1,7 @@
 import ApiNavigation from "./ApiNavigation";
 import classes from "./Header.module.css";
 
-const Header = (props) => {
-  const changeApiObjectHandler = (object) => {
-    props.changeApiObject(object);
-  };
+const Header = ({ setVehicleType, vehicleType }) => {
   return (
     <header className={classes.header}>
       <h1>
@@ -16,7 +13,10 @@ const Header = (props) => {
           SpaceX API
         </a>
       </h1>
-      <ApiNavigation changeApiObject={changeApiObjectHandler} />
+      <ApiNavigation
+        setVehicleType={(apiName) => setVehicleType(apiName)}
+        vehicleType={vehicleType}
+      />
     </header>
   );
 };

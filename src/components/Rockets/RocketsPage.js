@@ -18,7 +18,6 @@ const RocketsPage = () => {
   useEffect(() => {
     (async function getRockets() {
       const data = await fetchRocketsApi();
-      console.log("fetching...");
       if (data.error) {
         setError(data.error);
         return;
@@ -27,7 +26,7 @@ const RocketsPage = () => {
       setSelectedRocket(data[0]);
       setError(null);
     })();
-  }, [setRockets]);
+  }, []);
   if (error) return <p>{error.message}</p>;
   if (!rockets) return <div>Loading...</div>;
 
