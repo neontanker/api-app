@@ -1,8 +1,0 @@
-.p {
-  margin: 5px;
-  color: black;
-}
-
-.p::first-letter {
-  text-transform: capitalize;
-}
