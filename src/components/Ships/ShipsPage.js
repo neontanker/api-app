@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import ApiMenuItem from "../UI/ApiMenuItem";
 import Card from "../UI/Card";
 import fetchShipsApi from "./fetchShipsApi";
 import Ship from "./Ship";
 import "../UI/apiDetailsWrapperCard.css";
-// import PageNumberList from "./PageNumberMenu/PageNumberList";
+import PageNumberList from "../Shared/PageNumberMenu/PageMenuList";
 
 const ShipsPage = () => {
-  // WIP: Pagination
-  const [ships, setShips] = useState(null);
+  const [ships, setShips] = useState([]);
   const [selectedShip, setSelectedShip] = useState(null);
   const [error, setError] = useState(null);
-  // const [totalPages, setTotalPages] = useState(0);
+  const [paginationOptions, setPaginationOptions] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const getShips = async (pageNumber) => {
+  const getShips = useCallback(async (pageNumber) => {
+    setIsLoading(true);
     const data = await fetchShipsApi(pageNumber);
     if (data.error) {
       setError(data.error);
@@ -22,38 +23,41 @@ const ShipsPage = () => {
     }
     setShips(data.docs);
     setSelectedShip(data.docs[0]);
-    // setTotalPages(data.totalPages);
+    setPaginationOptions(data.pagination);
     setError(null);
+    setIsLoading(false);
+  }, []);
+  const changePageHandler = (pageNumber) => {
+    // const options = {
+    //   pageNumber: 2,
+    // };
+    getShips(pageNumber);
   };
-  // const changePageHandler = (pageNumber) => {
-  //   // const options = {
-  //   //   pageNumber: 2,
-  //   // };
-  //   getShips(pageNumber);
-  // };
 
   useEffect(() => {
     getShips();
-  }, [setShips]);
+  }, [getShips]);
   if (error) return <p>{error.message}</p>;
-  if (!ships) return <div>Loading...</div>;
+  if (isLoading) return <p>Loading...</p>;
+
+  const shipMenu = ships.map((ship) => (
+    <ApiMenuItem
+      onClick={() => {
+        setSelectedShip(ship);
+      }}
+      active={selectedShip === ship}
+      name={ship.name}
+      key={ship.name}
+    />
+  ));
 
   return (
     <>
-      {ships.map((ship) => (
-        <ApiMenuItem
-          onClick={() => {
-            setSelectedShip(ship);
-          }}
-          active={selectedShip === ship}
-          name={ship.name}
-          key={ship.name}
-        />
-      ))}
-      {/* <PageNumberList
-        totalPages={totalPages}
+      {shipMenu}
+      <PageNumberList
+        paginationOptions={paginationOptions}
         changePageHandler={changePageHandler}
-      /> */}
+      />
       <Card className="detailsWrapperCard">
         {selectedShip && <Ship {...selectedShip} />}
       </Card>

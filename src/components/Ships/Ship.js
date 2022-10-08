@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "../UI/Card";
-import ApiImageList from "../Shared/ApiImageList";
+import ApiImageList from "../Shared/ApiImageGallery/ApiImageList";
 import "../UI/apiDetailsCard.css";
 
 const Location = ({ value }) => (
@@ -59,11 +59,6 @@ const Ship = ({ image, imo, link, mass_kg, name, roles, year_built }) => {
             <strong>Year Built:</strong> {year_built}
           </p>
         )}
-
-        {/* Not used by Rocket - move */}
-        {/* <p>
-        {roles.join(", ")}
-      </p> */}
       </Card>
 
       <ApiImageList images={image} />

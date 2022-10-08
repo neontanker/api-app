@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "../UI/Card";
-import ApiImageList from "../Shared/ApiImageList";
+import ApiImageList from "../Shared/ApiImageGallery/ApiImageList";
 import "../UI/apiDetailsCard.css";
 
 const Rocket = ({ description, flickr_images, height, mass, name }) => {

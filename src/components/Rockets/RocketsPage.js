@@ -9,6 +9,7 @@ import "../UI/apiDetailsWrapperCard.css";
  * Handle rockets API state and renders a list of rockets
  */
 const RocketsPage = () => {
+  console.log("rocket");
   const [rockets, setRockets] = useState(null);
   const [selectedRocket, setSelectedRocket] = useState(null);
   const [error, setError] = useState(null);
@@ -22,6 +23,7 @@ const RocketsPage = () => {
         setError(data.error);
         return;
       }
+
       setRockets(data);
       setSelectedRocket(data[0]);
       setError(null);

@@ -20,6 +20,8 @@
   color: white;
   text-decoration: underline;
   text-decoration-color: deeppink;
+  transition: background-color 0.3s;
+  transition: color 0.3s;
 }
 .active {
   background-color: rgb(51, 51, 51);
