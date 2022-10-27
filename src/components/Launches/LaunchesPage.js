@@ -1,27 +1,27 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import ApiMenuItem from "../UI/ApiMenuItem";
-import fetchShipsApi from "./fetchShipsApi";
-import Ship from "./Ship";
+import fetchLaunchesApi from "./fetchLaunchesApi";
+import Launch from "./Launch";
 import PageNumberList from "../Shared/PageNumberMenu/PageMenuList";
 import ApiDetailsWrapperCard from "../UI/ApiDetailsWrapperCard";
 
-const ShipsPage = () => {
-  const [ships, setShips] = useState([]);
-  const [selectedShip, setSelectedShip] = useState(null);
+const LaunchesPage = () => {
+  const [launches, setLaunches] = useState([]);
+  const [selectedLaunch, setSelectedLaunch] = useState(null);
   const [error, setError] = useState(null);
   const [paginationOptions, setPaginationOptions] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getShips = useCallback(async (pageNumber) => {
+  const getLaunches = useCallback(async (pageNumber) => {
     setIsLoading(true);
-    const data = await fetchShipsApi(pageNumber);
+    const data = await fetchLaunchesApi(pageNumber);
     if (data.error) {
       setError(data.error);
       return;
     }
-    setShips(data.docs);
-    setSelectedShip(data.docs[0]);
+    setLaunches(data.docs);
+    setSelectedLaunch(data.docs[0]);
     setPaginationOptions(data.pagination);
     setError(null);
     setIsLoading(false);
@@ -30,38 +30,38 @@ const ShipsPage = () => {
     // const options = {
     //   pageNumber: 2,
     // };
-    getShips(pageNumber);
+    getLaunches(pageNumber);
   };
 
   useEffect(() => {
-    getShips();
-  }, [getShips]);
+    getLaunches();
+  }, [getLaunches]);
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>Loading...</p>;
 
-  const shipMenu = ships.map((ship) => (
+  const launchMenu = launches.map((launch) => (
     <ApiMenuItem
       onClick={() => {
-        setSelectedShip(ship);
+        setSelectedLaunch(launch);
       }}
-      active={selectedShip === ship}
-      name={ship.name}
-      key={ship.name}
+      active={selectedLaunch === launch}
+      name={launch.name}
+      key={launch.name}
     />
   ));
 
   return (
     <>
-      {shipMenu}
+      {launchMenu}
       <PageNumberList
         paginationOptions={paginationOptions}
         changePageHandler={changePageHandler}
       />
       <ApiDetailsWrapperCard>
-        {selectedShip && <Ship {...selectedShip} />}
+        {selectedLaunch && <Launch {...selectedLaunch} />}
       </ApiDetailsWrapperCard>
     </>
   );
 };
 
-export default ShipsPage;
+export default LaunchesPage;

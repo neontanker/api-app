@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ApiMenuItem from "../UI/ApiMenuItem";
-import Card from "../UI/Card";
+
 import fetchRocketsApi from "./fetchRocketsApi";
 import Rocket from "./Rocket";
-import "../UI/apiDetailsWrapperCard.css";
+import ApiDetailsWrapperCard from "../UI/ApiDetailsWrapperCard";
 
 /**
  * Handle rockets API state and renders a list of rockets
  */
 const RocketsPage = () => {
-  console.log("rocket");
   const [rockets, setRockets] = useState(null);
   const [selectedRocket, setSelectedRocket] = useState(null);
   const [error, setError] = useState(null);
@@ -44,9 +43,9 @@ const RocketsPage = () => {
           key={rocket.name}
         />
       ))}
-      <Card className="detailsWrapperCard">
+      <ApiDetailsWrapperCard>
         {selectedRocket && <Rocket {...selectedRocket} />}
-      </Card>
+      </ApiDetailsWrapperCard>
     </>
   );
 };

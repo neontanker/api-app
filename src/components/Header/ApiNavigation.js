@@ -1,9 +1,10 @@
 import classes from "./ApiNavigation.module.css";
 
 const vehicleTypes = [
-  { key: "rockets", label: "Rocket" },
-  { key: "dragons", label: "Dragon" },
-  { key: "ships", label: "Ship" },
+  { key: "rockets", label: "Rockets" },
+  { key: "dragons", label: "Dragons" },
+  { key: "ships", label: "Ships" },
+  { key: "launches", label: "Launches" },
 ];
 
 const ApiNavigation = ({ setVehicleType, vehicleType }) => {
