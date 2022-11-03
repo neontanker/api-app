@@ -1,6 +1,8 @@
 .apiDetailsWrapper {
   display: flex;
+  justify-content: center;
   flex-direction: row;
+
   flex-wrap: wrap;
   margin: auto;
   border-radius: 12px;

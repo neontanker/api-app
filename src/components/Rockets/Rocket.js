@@ -3,7 +3,14 @@ import React from "react";
 import ApiImageList from "../Shared/ApiImageGallery/ApiImageList";
 import ApiDetailsCard from "../UI/ApiDetailsCard";
 
-const Rocket = ({ description, flickr_images, height, mass = [], name }) => {
+const Rocket = ({
+  description,
+  flickr_images,
+  height,
+  mass = [],
+  name,
+  galleryClassName,
+}) => {
   const tons = mass.kg ? mass.kg / 1000 : null;
 
   const elephantMath = `(approximately ${Math.round(tons / 6)} elephants)`;
@@ -33,7 +40,7 @@ const Rocket = ({ description, flickr_images, height, mass = [], name }) => {
         )}
       </ApiDetailsCard>
 
-      <ApiImageList images={flickr_images} />
+      <ApiImageList images={flickr_images} className={galleryClassName} />
     </>
   );
 };

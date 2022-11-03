@@ -3,6 +3,9 @@ import ApiImageItem from "./ApiImageItem";
 
 const ApiImageList = (props) => {
   let images = [];
+  if (props.images === null) {
+    return;
+  }
   if (Array.isArray(props.images)) {
     images = props.images.map((image, i) => {
       return <ApiImageItem key={i} imageLink={image} />;
@@ -11,7 +14,11 @@ const ApiImageList = (props) => {
     images = <ApiImageItem imageLink={props.images} />;
   }
 
-  return <ul className={classes.list}>{images}</ul>;
+  return (
+    <ul className={`${classes.list} ${props.className ? props.className : ""}`}>
+      {images}
+    </ul>
+  );
 };
 
 export default ApiImageList;

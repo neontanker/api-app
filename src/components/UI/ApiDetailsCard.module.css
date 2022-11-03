@@ -17,3 +17,9 @@
 .apiDetails p {
   margin: 5px;
 }
+@media only screen and (max-width: 768px) {
+  .apiDetails {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}

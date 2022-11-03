@@ -42,7 +42,7 @@ const Payload = ({
 
         {mass_kg && (
           <p>
-            <strong>Mass:</strong> {mass_kg}
+            <strong>Mass:</strong> {mass_kg} kg
           </p>
         )}
 

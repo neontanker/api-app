@@ -1,3 +1,13 @@
 .wrapper {
   width: 49%;
+  box-shadow: 0 0px 10px rgb(0 0 0 / 0.5);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
 }

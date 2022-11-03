@@ -12,7 +12,7 @@ const fetchLaunchesApi = async (pageNumber = 1) => {
         details: 1,
         links: 1,
       },
-      populate: ["payloads", "rocket"],
+      populate: ["payloads", "rocket", "ships"],
     },
   };
 

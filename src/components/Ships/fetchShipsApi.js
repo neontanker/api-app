@@ -29,7 +29,6 @@ const fetchShipsApi = async (pageNumber = 1) => {
     if (!response.ok) {
       throw new Error("Something went wrong!");
     }
-    // console.log("fetching ships");
     const data = await response.json();
     const { docs, ...pagination } = data;
     return { docs, pagination };
