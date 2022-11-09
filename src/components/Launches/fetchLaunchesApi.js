@@ -1,6 +1,7 @@
-const BASE_SHIPS_URL = `https://api.spacexdata.com/v4/ships/query`;
+const BASE_Launches_URL = `https://api.spacexdata.com/v4/launches/query`;
 
-const fetchShipsApi = async (pageNumber = 1) => {
+const fetchLaunchesApi = async (pageNumber = 1) => {
+  // fetchOneObject...?
   const queryOptions = {
     query: {},
     options: {
@@ -8,18 +9,15 @@ const fetchShipsApi = async (pageNumber = 1) => {
       page: pageNumber,
       select: {
         name: 1,
-        image: 1,
-        mass_kg: 1,
-        year_built: 1,
-        imo: 1,
-        link: 1,
-        roles: 1,
+        details: 1,
+        links: 1,
       },
+      populate: ["payloads", "rocket", "ships"],
     },
   };
 
   try {
-    const response = await fetch(BASE_SHIPS_URL, {
+    const response = await fetch(BASE_Launches_URL, {
       method: "POST",
       body: JSON.stringify(queryOptions),
       headers: {
@@ -38,4 +36,4 @@ const fetchShipsApi = async (pageNumber = 1) => {
   }
 };
 
-export default fetchShipsApi;
+export default fetchLaunchesApi;

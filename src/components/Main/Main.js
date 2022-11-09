@@ -1,4 +1,5 @@
 import DragonsPage from "../Dragons/DragonsPage";
+import LaunchesPage from "../Launches/LaunchesPage";
 import RocketsPage from "../Rockets/RocketsPage";
 import ShipsPage from "../Ships/ShipsPage";
 import classes from "./Main.module.css";
@@ -13,6 +14,9 @@ const Main = ({ vehicleType }) => {
   }
   if (vehicleType === "ships") {
     content = <ShipsPage />;
+  }
+  if (vehicleType === "launches") {
+    content = <LaunchesPage />;
   }
   return <main className={classes.main}>{content}</main>;
 };

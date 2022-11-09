@@ -4,8 +4,9 @@ import classes from "./App.module.css";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 
-//@TODO: use React Query to avoid double API call, also perhaps reduce the "loading..." time (check out "Suspense" too)
-
+/*@TODO: use React Query to avoid double API call from ReactStrictMode(should be dev only but React Query seems interesting)
+ also perhaps reduce the "loading..." time (check out "Suspense" too)
+*/
 function App() {
   const [vehicleType, setVehicleType] = useState("rockets");
 

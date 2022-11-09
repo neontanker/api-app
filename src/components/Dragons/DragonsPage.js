@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ApiMenuItem from "../UI/ApiMenuItem";
-import Card from "../UI/Card";
+
 import fetchDragonsApi from "./fetchDragonsApi";
 import Dragon from "./Dragon";
-
-import "../UI/apiDetailsWrapperCard.css";
+import ApiDetailsWrapperCard from "../UI/ApiDetailsWrapperCard";
 
 const DragonsPage = () => {
   const [dragons, setDragons] = useState(null);
@@ -39,9 +38,9 @@ const DragonsPage = () => {
           key={dragon.name}
         />
       ))}
-      <Card className="detailsWrapperCard">
+      <ApiDetailsWrapperCard>
         {selectedDragon && <Dragon {...selectedDragon} />}
-      </Card>
+      </ApiDetailsWrapperCard>
     </>
   );
 };
